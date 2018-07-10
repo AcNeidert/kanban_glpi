@@ -1,0 +1,31 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+use VitorBari\GLPIWebservice\Services\Soap;
+use VitorBari\GLPIWebservice\GLPIWebservice;
+
+// Application specific global variables
+class Clientws
+{
+    private static $client = null;
+    private static $initialized = false;
+	private static $user = null;
+	private static $pass = null;
+    private static function initialize($user =null, $pass = Null)
+    {
+        if (self::$initialized)
+            return;
+		
+		$endpoint = 'PATH_TO_GLPI/plugins/webservices/soap.php';
+		$soapClient = new SoapClient(null, array('uri' => $endpoint, 'location' => $endpoint));
+		$service = new Soap($soapClient);
+		self::$client = new GLPIWebservice($service);
+        self::$client->auth( $user, $pass);
+        self::$initialized = true;
+    }
+
+    
+    public static function getClient($user = null, $pass = Null )
+    {
+        self::initialize($user, $pass);
+        return self::$client;
+    }
+}

@@ -1,0 +1,25 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+// Application specific global variables
+class Client
+{
+    private static $client = null;
+    private static $initialized = false;
+
+    private static function initialize()
+    {
+        if (self::$initialized)
+            return;
+		
+		self::$client = new Glpi\Api\Rest\Client('PATH_TO_GLPI/apirest.php/', new GuzzleHttp\Client());
+        self::$client->setAppToken('YOUR_TOKEN');
+        self::$initialized = true;
+    }
+
+    
+    public static function getClient()
+    {
+        self::initialize();
+        return self::$client;
+    }
+}

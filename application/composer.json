@@ -1,0 +1,6 @@
+{
+    "require": {
+        "glpi-project/php-library-glpi": "@dev",
+        "vitorbari/glpi-webservice-php-wrapper": "@dev"
+    }
+}

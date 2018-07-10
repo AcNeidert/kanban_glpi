@@ -1,0 +1,16 @@
+CREATE TABLE `glpi_plugin_kanban` (
+  `idTicket` int(11) DEFAULT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `coluna` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `priority` int(11) DEFAULT NULL,
+  KEY `id_ticket_fk` (`idTicket`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+CREATE TABLE `glpi_plugin_kanban_tempo` (
+  `idRegistro` int(11) NOT NULL AUTO_INCREMENT,
+  `idChamado` int(11) NOT NULL,
+  `dtInicio` datetime NOT NULL,
+  `dtFim` datetime DEFAULT NULL,
+  KEY `new_index_1` (`idRegistro`)
+) ENGINE=InnoDB AUTO_INCREMENT=488 DEFAULT CHARSET=utf8
